@@ -9,7 +9,13 @@ const List = props => {
     });
   }
   return props.list
-    .filter(item => !props.removedItems[item.name])
+    .filter(item => {
+      console.log(props.filter);
+
+      return props.filter !== "None"
+        ? !props.removedItems[item.name] && item.personality === props.filter
+        : !props.removedItems[item.name];
+    })
     .map(item => {
       return (
         <ul>
